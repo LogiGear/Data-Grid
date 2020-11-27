@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM microsoft/dotnet:3.1-sdk
+FROM mcr.microsoft.com/dotnet/sdk:3.1
 COPY . /app
 WORKDIR /app
 RUN ["dotnet", "restore"]
