@@ -61,7 +61,7 @@ namespace Data_Grid.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=&quot;db&quot;; database=&quot;WideWorldImporters&quot;; integrated security = false; User ID=SA; Password=Password789;.
+        ///   Looks up a localized string similar to Data Source=&quot;data-grid_db_1&quot;; database=&quot;WideWorldImporters&quot;; integrated security = false; User ID=SA; Password=Password789;.
         /// </summary>
         internal static string ConnectionString {
             get {
