@@ -15,3 +15,5 @@ services:
         environment:
             SA_PASSWORD: "Password789"
             ACCEPT_EULA: "Y"
+volumes:
+  sqlvolume:
