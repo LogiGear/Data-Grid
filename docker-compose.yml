@@ -4,7 +4,7 @@ services:
         build: .
         image: hlvtrinh/sample-data-grid
         ports:
-            - "8080:5000"
+            - "3000:5000"
         depends_on:
             data-grid_db:
                 condition: service_healthy
@@ -16,7 +16,7 @@ services:
             - SA_PASSWORD=Password789
         hostname: data-grid_db_1
         ports:
-            - 1433
+            - 3001:1433
         volumes:
             - mssql:/var/opt/mssql
         healthcheck:
