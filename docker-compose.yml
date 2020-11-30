@@ -4,9 +4,10 @@ services:
         build: .
         image: hlvtrinh/sample-data-grid
         ports:
-            - "8080:80"
+            - "8080:5000"
         depends_on:
-            - data-grid_db
+            data-grid_db:
+                condition: service_healthy
 
     data-grid_db:
         image: mcr.microsoft.com/mssql/server:2019-latest
@@ -16,3 +17,24 @@ services:
         hostname: data-grid_db_1
         ports:
             - 1433
+        volumes:
+            - mssql:/var/opt/mssql
+        healthcheck:
+            test: ["CMD-SHELL", '/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Password789 -Q "SELECT 1" || exit 1']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    db-importer:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        volumes:
+            - mssql:/var/opt/mssql
+            - ./.dbimporter:/dbimporter
+        command: /dbimporter/importdb.sh
+        depends_on:
+            data-grid_db:
+                condition: service_healthy
+        
+
+volumes:
+    mssql:
