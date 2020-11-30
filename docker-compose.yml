@@ -2,5 +2,17 @@ version: "3.8"
 services:
     web:
         build: .
+        image: hlvtrinh/sample-data-grid
         ports:
-            - "3000:80"
+            - "8080:80"
+        depends_on:
+            - data-grid_db
+
+    data-grid_db:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Password789
+        hostname: data-grid_db_1
+        ports:
+            - 1433
